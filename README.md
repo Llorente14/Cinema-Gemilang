@@ -20,7 +20,7 @@ Proyek ini bertujuan untuk membangun platform digital lengkap untuk Cinema Gemil
 - **Backend:** Laravel 11
 - **Frontend:** Blade, Livewire 3, Alpine.js, Tailwind CSS
 - **Admin Panel:** Filament 3
-- **Database:** MySQL / PostgreSQL (sesuai pilihan server)
+- **Database:** Sqlite
 - **Server:** PHP 8.2+
 
 ## 🚀 Instalasi & Setup Lokal
@@ -30,7 +30,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal 
 1.  **Clone Repository**
 
     ```bash
-    git clone [https://github.com/](https://github.com/)[username-anda]/cinema-gemilang.git
+    git clone https://github.com/Llorente14/Cinema-Gemilang.git
     cd cinema-gemilang
     ```
 
@@ -78,7 +78,7 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal 
     ```
 
 Aplikasi sekarang akan berjalan di `http://127.0.0.1:8000`.
-Admin panel dapat diakses di `http://127.0.0.1:8000/admin`.
+Admin panel dapat diakses di `http://127.0.0.1:8000/dashboard`.
 
 ## 🎯 Target Fitur Utama
 
