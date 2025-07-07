@@ -6,10 +6,14 @@ use App\Filament\Resources\StudioResource\Pages;
 use App\Filament\Resources\StudioResource\RelationManagers;
 use App\Models\Studio;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -38,8 +42,8 @@ class StudioResource extends Resource
                     ->numeric()
                     ->default(12),
                 Forms\Components\Toggle::make('is_maintenance')
-                    ->onColor('danger') // Warna saat aktif (merah)
-                    ->offColor('success') // Warna saat non-aktif (hijau)
+                    ->onColor('success') // Warna saat aktif (merah)
+
                     ->helperText('Jika aktif, studio ini tidak akan bisa dipilih untuk jadwal baru.'),
 
             ]);
@@ -74,6 +78,10 @@ class StudioResource extends Resource
 
             ])
             ->filters([
+                TernaryFilter::make('is_maintenance')
+                    ->placeholder('Sedang diperbaiki')
+                    ->native(false),
+
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

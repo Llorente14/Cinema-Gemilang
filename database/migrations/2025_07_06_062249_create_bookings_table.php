@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
-              $table->id(); // Kolom id
+            $table->id(); // Kolom id
 
             // Foreign key untuk users
             $table->foreignId('user_id')
-                  ->constrained('users') // Merujuk ke tabel 'users'
-                  ->onDelete('cascade'); // Jika user dihapus, booking-nya juga terhapus
+                ->constrained('users') // Merujuk ke tabel 'users'
+                ->onDelete('cascade'); // Jika user dihapus, booking-nya juga terhapus
 
             // Foreign key untuk showtimes
             $table->foreignId('showtime_id')
-                  ->constrained('showtimes') // Merujuk ke tabel 'showtimes'
-                  ->onDelete('cascade'); // Jika jadwal tayang dihapus, booking-nya juga terhapus
+                ->constrained('showtimes') // Merujuk ke tabel 'showtimes'
+                ->onDelete('cascade'); // Jika jadwal tayang dihapus, booking-nya juga terhapus
 
             $table->unsignedInteger('total_price');
+            $table->unsignedInteger('quantity');
             $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->string('booking_code')->unique(); // Kode unik untuk setiap booking
             $table->timestamps(); // Kolom created_at dan updated_at

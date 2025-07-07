@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             MovieAndStudioSeeder::class,
             ShowtimeSeeder::class,
-            // BookingSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }

@@ -8,11 +8,14 @@ use App\Filament\Resources\MovieResource\Pages;
 use App\Filament\Resources\MovieResource\RelationManagers;
 use App\Models\Movie;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -110,6 +113,58 @@ class MovieResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                //Filter berdasarkan MOVIESTATUS Enums
+                SelectFilter::make('status')
+                    ->label('Filter Status Film')
+                    ->native(false)
+                    ->multiple()
+                    ->options(
+                        collect(MovieStatus::cases())->mapWithKeys(function ($status) {
+                            return [$status->value => $status->getLabel()];
+                        })
+                    )
+                    ->query(function ($query, array $data) {
+                        if (empty($data['values'])) {
+                            return;
+                        }
+                        $query->whereHas('showtimes.movie', function ($subQuery) use ($data) {
+                            $subQuery->where('status', $data['values']);
+                        });
+                    }),
+                //Filter berdasarkan AgeRating Enums
+                SelectFilter::make('age_rating')
+                    ->label('Filter Rating Usia')
+                    ->native(false)
+                    ->multiple()
+                    ->options(
+                        collect(AgeRating::cases())->mapWithKeys(function ($age_rating) {
+                            return [$age_rating->value => $age_rating->getLabel()];
+                        })
+                    )
+                    ->query(function ($query, array $data) {
+                        if (empty($data['values'])) {
+                            return;
+                        }
+                        $query->whereHas('showtimes.movie', function ($subQuery) use ($data) {
+                            $subQuery->where('age_rating', $data['values']);
+                        });
+                    }),
+                Filter::make('created_at')
+                    ->form([
+                        DatePicker::make('Tanggal Awal'),
+                        DatePicker::make('Tanggal Akhir')->default(now()),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['Tanggal Awal'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['Tanggal Akhir'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    }),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

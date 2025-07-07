@@ -15,5 +15,11 @@ class ShowtimeSeeder extends Seeder
             'start_time' => now()->addDays(1)->setTime(19, 0),
             'price' => 50000,
         ]);
+        Showtime::create([
+            'movie_id' => 1,
+            'studio_id' => 2,
+            'start_time' => now()->addDays(1)->setTime(21, 30, 0),
+            'price' => 55000,
+        ]);
     }
 }

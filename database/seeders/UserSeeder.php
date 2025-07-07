@@ -28,5 +28,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 'customer',
         ]);
+
+        //Membuat 10 Customer berbeda
+        User::factory()->count(10)->create();
     }
 }

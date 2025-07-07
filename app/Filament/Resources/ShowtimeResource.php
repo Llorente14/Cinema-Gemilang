@@ -7,9 +7,13 @@ use App\Filament\Resources\ShowtimeResource\RelationManagers;
 use App\Models\Showtime;
 use Illuminate\Support\Carbon;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -103,6 +107,53 @@ class ShowtimeResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                //Filter berdasarkan Film
+                SelectFilter::make('movie')
+                    ->label('Nama Film')
+                    ->multiple()
+                    ->relationship('movie', 'title')
+                    ->searchable()
+                    ->preload(),
+                //Filter berdasarkan Studio
+                SelectFilter::make('studio')
+                    ->label('Nama Studio')
+                    ->multiple()
+                    ->relationship('studio', 'name')
+                    ->native(false)
+                    ->preload(),
+                Filter::make('created_at')
+                    ->label('Tanggal Pesan')
+                    ->form([
+                        DatePicker::make('Tanggal Awal'),
+                        DatePicker::make('Tanggal Akhir')->default(now()),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['Tanggal Awal'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['Tanggal Akhir'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    }),
+                Filter::make('price')
+                    ->form([
+                        TextInput::make('price_from')->label('Harga Minimum')->numeric()->prefix('Rp'),
+                        TextInput::make('price_to')->label('Harga Maksimum')->numeric()->prefix('Rp'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['price_from'],
+                                fn(Builder $query, $price): Builder => $query->where('price', '>=', $price),
+                            )
+                            ->when(
+                                $data['price_to'],
+                                fn(Builder $query, $price): Builder => $query->where('price', '<=', $price),
+                            );
+                    }),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([

@@ -16,6 +16,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
 
 class BookingResource extends Resource
 {
@@ -45,6 +49,7 @@ class BookingResource extends Resource
                             )
                             ->searchable()
                             ->live()
+                            ->native(false)
                             ->afterStateUpdated(fn(Set $set) => $set('showtime_id', null)),
 
                         // Pilih jadwal berdasarkan film yang dipilih di atas
@@ -114,33 +119,104 @@ class BookingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('booking_code')
+                    ->label('Kode Booking')
+                    ->searchable()
+                    ->copyable()
+                    ->icon('heroicon-o-qr-code')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('showtime.id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Pemesan')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('showtime.movie.title')
+                    ->label('Film')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
-                    ->numeric()
+                    ->label('Total Harga')
+                    ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->label('Status')
+                    ->colors([
+                        'primary' => 'pending',
+                        'success' => 'confirmed',
+                        'danger' => 'cancelled',
+                    ])
                     ->searchable(),
-                Tables\Columns\TextColumn::make('booking_code')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('bookingseats.seat_number')
+                    ->label('Nomor Kursi')
+                    ->listWithLineBreaks()
+                    ->limitList(3),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Tanggal Pesan')
+                    ->dateTime('d M Y, H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Terakhir Diperbarui')
+                    ->dateTime('d M Y, H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
+                    ->label('Tanggal Dihapus')
+                    ->dateTime('d M Y, H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
+                //Filter berdasarkan Film
+                SelectFilter::make('movie')
+                    ->label('Nama Film')
+                    ->multiple()
+                    ->relationship('showtime.movie', 'title')
+                    ->searchable()
+                    ->preload(),
+
+                // BARU: Filter berdasarkan Studio
+                SelectFilter::make('studio')
+                    ->label('Nama Studio')
+                    ->multiple()
+                    ->relationship('showtime.studio', 'name')
+                    ->searchable()
+                    ->preload(),
+
+                // BARU: Filter berdasarkan rentang harga
+                Filter::make('total_price')
+                    ->form([
+                        TextInput::make('price_from')->label('Harga Minimum')->numeric()->prefix('Rp'),
+                        TextInput::make('price_to')->label('Harga Maksimum')->numeric()->prefix('Rp'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['price_from'],
+                                fn(Builder $query, $price): Builder => $query->where('total_price', '>=', $price),
+                            )
+                            ->when(
+                                $data['price_to'],
+                                fn(Builder $query, $price): Builder => $query->where('total_price', '<=', $price),
+                            );
+                    }),
+                Filter::make('created_at')
+                    ->label('Tanggal Pesan')
+                    ->form([
+                        DatePicker::make('Tanggal Awal'),
+                        DatePicker::make('Tanggal Akhir')->default(now()),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['Tanggal Awal'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '>=', $date),
+                            )
+                            ->when(
+                                $data['Tanggal Akhir'],
+                                fn(Builder $query, $date): Builder => $query->whereDate('created_at', '<=', $date),
+                            );
+                    }),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
@@ -167,7 +243,7 @@ class BookingResource extends Resource
     {
         return [
             'index' => Pages\ListBookings::route('/'),
-            'create' => Pages\CreateBooking::route('/create'),
+
             'view' => Pages\ViewBooking::route('/{record}'),
             'edit' => Pages\EditBooking::route('/{record}/edit'),
         ];
