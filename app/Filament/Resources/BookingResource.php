@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\BookingStatus;
 use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
@@ -50,7 +51,8 @@ class BookingResource extends Resource
                             ->searchable()
                             ->live()
                             ->native(false)
-                            ->afterStateUpdated(fn(Set $set) => $set('showtime_id', null)),
+                            ->afterStateUpdated(fn(Set $set) => $set('showtime_id', null))
+                            ->dehydrated(false),
 
                         // Pilih jadwal berdasarkan film yang dipilih di atas
                         Forms\Components\Select::make('showtime_id')
@@ -140,11 +142,11 @@ class BookingResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->label('Status')
-                    ->colors([
-                        'primary' => 'pending',
-                        'success' => 'confirmed',
-                        'danger' => 'cancelled',
-                    ])
+                    ->color(fn(BookingStatus $state): string => match ($state) {
+                        BookingStatus::Pending => 'primary',
+                        BookingStatus::Confirmed => 'success',
+                        BookingStatus::Cancelled => 'danger',
+                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('bookingseats.seat_number')
                     ->label('Nomor Kursi')

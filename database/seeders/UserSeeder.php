@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,15 +19,17 @@ class UserSeeder extends Seeder
             'name' => 'Admin123',
             'email' => 'admin@cinema.gemilang',
             'password' => Hash::make('password'),
-            'role' => 'admin',
+            'email_verified_at' => now(),
+            'role' => UserRole::Admin,
         ]);
 
         // Customer
         User::create([
             'name' => 'Fabio',
             'email' => 'fab@example.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'role' => 'customer',
+            'role' => UserRole::Customer,
         ]);
 
         //Membuat 10 Customer berbeda

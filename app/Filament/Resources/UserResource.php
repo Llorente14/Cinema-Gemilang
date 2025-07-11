@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\UserRole;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
@@ -38,8 +39,10 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required(),
-                Forms\Components\TextInput::make('role')
-                    ->required(),
+                Forms\Components\Select::make('role')
+                    ->options(UserRole::class) // 👈 Otomatis ambil opsi & warna dari Enum
+                    ->required()
+                    ->native(false), //
             ]);
     }
 
@@ -57,11 +60,11 @@ class UserResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('role')
                     ->searchable()
+                    ->sortable()
                     ->badge() // Mengubahnya menjadi badge
-                    ->color(fn(string $state): string => match ($state) {
-                        'admin' => 'warning', // Warna oranye/kuning untuk menandakan privilege
-                        'customer' => 'success', // Warna hijau untuk status standar/aktif
-                        default => 'gray', // Warna abu-abu untuk role lain (jika ada)
+                    ->color(fn(UserRole $state): string => match ($state) {
+                        UserRole::Admin => 'warning',
+                        UserRole::Customer => 'success',
                     }),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

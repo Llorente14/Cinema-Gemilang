@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Movie extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
   //Semua field Movie bisa diisi
   public $guarded = [];
 
@@ -27,7 +27,7 @@ class Movie extends Model
    */
   protected $casts = [
     'status' => MovieStatus::class,
-    'age_rating' => AgeRating::class, // <-- Casting di sini
+    'age_rating' => AgeRating::class,
     'release_date' => 'date',
   ];
 }

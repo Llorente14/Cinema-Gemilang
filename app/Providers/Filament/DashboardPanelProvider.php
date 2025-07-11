@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\StatsOverview;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -30,6 +31,7 @@ class DashboardPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
+            ->databaseNotifications()
             ->colors([
                 'primary' => Color::Blue,
                 'gray' => Color::Slate,
@@ -43,8 +45,7 @@ class DashboardPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                StatsOverview::class
             ])
             ->middleware([
                 EncryptCookies::class,

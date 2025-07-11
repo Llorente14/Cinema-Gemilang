@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BookingStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,7 +27,7 @@ return new class extends Migration
 
             $table->unsignedInteger('total_price');
             $table->unsignedInteger('quantity');
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->string('status')->default(BookingStatus::Pending->value);
             $table->string('booking_code')->unique(); // Kode unik untuk setiap booking
             $table->timestamps(); // Kolom created_at dan updated_at
             $table->softDeletes();
