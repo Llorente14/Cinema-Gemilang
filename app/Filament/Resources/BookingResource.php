@@ -6,6 +6,7 @@ use App\Enums\BookingStatus;
 use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
+use App\Models\BookingSeat;
 use App\Models\Movie;
 use App\Models\Showtime;
 use Filament\Forms;
@@ -19,7 +20,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Collection;
 use Filament\Tables\Filters\Filter;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Tables\Filters\SelectFilter;
 
 class BookingResource extends Resource
@@ -224,12 +227,29 @@ class BookingResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                //Mendownload PDF
+                Tables\Actions\Action::make('Cetak')
+                    ->icon('heroicon-o-printer')
+                    // Gunakan ->action() bukan ->url()
+                    ->action(function (Booking $record) {
+                        // Logika pembuatan PDF dipindah ke sini
+                        $fileName = 'invoice-' . $record->booking_code . '.pdf';
+
+                        $pdf = Pdf::loadView('pdfs.invoice', ['record' => $record]);
+
+                        // Langsung kirim response download
+                        return response()->streamDownload(
+                            fn() => print($pdf->output()),
+                            $fileName
+                        );
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
+
                 ]),
             ]);
     }
@@ -248,6 +268,7 @@ class BookingResource extends Resource
 
             'view' => Pages\ViewBooking::route('/{record}'),
             'edit' => Pages\EditBooking::route('/{record}/edit'),
+
         ];
     }
 
