@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Enums\BookingStatus;
 use App\Models\Booking;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -49,10 +50,8 @@ class LaporanPerformaFilm extends Page implements HasForms
             ])->columns(2);
     }
 
-    // Method updatedData() dihapus karena tidak lagi diperlukan.
 
-    // --- PERUBAHAN: Method diubah menjadi public ---
-    // agar bisa dipanggil oleh wire:submit dari frontend
+    // Func Livewire untuk generateTableData
     public function generateReportData(): void
     {
         // Menggunakan Enum untuk status yang valid
@@ -126,5 +125,29 @@ class LaporanPerformaFilm extends Page implements HasForms
         $this->totals['tingkat_okupansi'] = ($total_kapasitas_keseluruhan > 0)
             ? ($this->totals['jumlah_penonton'] / $total_kapasitas_keseluruhan) * 100
             : 0;
+    }
+
+    //Func Livewire untuk download report ke PDF
+    public function exportPdf()
+    {
+        // 1. Siapkan data yang akan dikirim ke Blade view PDF.
+        $dataForPdf = [
+            'reportData' => $this->reportData,
+            'totals'     => $this->totals,
+            'startDate'  => $this->data['startDate'],
+            'endDate'    => $this->data['endDate'],
+        ];
+
+        // 2. Buat nama file yang dinamis.
+        $filename = 'laporan-penjualan-tiket-' . $this->data['startDate'] . '-sd-' . $this->data['endDate'] . '.pdf';
+
+        // 3. Load view, kirim data, atur properti PDF, dan siapkan untuk diunduh.
+        $pdf = Pdf::loadView('pdfs.laporan-penjualan', $dataForPdf)->setPaper('a4', 'landscape');
+
+        // 5. Kirim file PDF ke browser untuk diunduh.
+        return response()->streamDownload(
+            fn() => print($pdf->output()),
+            $filename
+        );
     }
 }

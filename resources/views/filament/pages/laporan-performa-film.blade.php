@@ -11,7 +11,10 @@
             </x-filament::button>
         </div>
     </form>
-
+    <x-filament::button wire:click='exportPdf' icon="heroicon-s-arrow-down-tray" icon-position='after' size="lg"
+        tooltip="Unduh laporan ke bentuk PDF">
+        Unduh PDF
+    </x-filament::button>
     {{-- Card untuk Tabel Laporan --}}
     <x-filament::card>
         {{-- PERBAIKAN 1: Cek apakah ada data sebelum menampilkan tabel --}}
