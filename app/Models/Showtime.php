@@ -37,6 +37,6 @@ class Showtime extends Model
    * @var array
    */
   protected $casts = [
-    'start_time' => 'datetime', // 👈 Tambahkan baris ini
+    'start_time' => 'datetime',
   ];
 }
