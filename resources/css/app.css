@@ -91,3 +91,28 @@
         transparent 85%
     );
 }
+
+/* Title Container */
+.title-container {
+    /* Gunakan vw untuk width yang responsif */
+    width: 36vw;
+    min-width: 280px; /* Minimum width agar tidak terlalu kecil */
+    max-width: 500px; /* Maximum width agar tidak terlalu besar */
+}
+@media (max-width: 768px) {
+    .title-container {
+        width: 50vw;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-container {
+        width: 60vw;
+        max-width: 250px;
+    }
+}
+/* Hamburger Menu */
+.transition-hamburger {
+    transition: all ease-out 1s;
+}

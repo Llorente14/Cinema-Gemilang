@@ -5,12 +5,12 @@
         <img src="images/Jumbotron.jpg" alt="" class="absolute inset-0 w-full h-full aspect-video ">
         <div class="absolute inset-0 right-[25dvw] left-vignette opacity-90 transition-opacity duration-500">
         </div>
-        <div class="absolute bottom-0 z-10 w-full h-[30dvh] hero-vignette bg-top bg-[length:100%_100%]">
+        <div class="absolute -bottom-[0.25dvw] z-10 w-full h-[30dvh] hero-vignette bg-top bg-[length:100%_100%]">
         </div>
     </div>
     <div class="absolute inset-0 w-full h-full">
-        <div class="flex flex-col justify-end left-[4%] w-[36%] bottom-[35%] absolute top-0">
-            <div class=" min-h-[13.2dvh] relative" id="title-wrapper">
+        <div class="flex flex-col justify-end left-[4%] w-[36%] bottom-[35%] absolute top-0 ">
+            <div class="  relative min-h-[13.2dvh]" id="title-wrapper">
 
                 <img src="images/jumbotron-title.webp" alt="" class="w-full" draggable="false">
             </div>
@@ -27,7 +27,7 @@
             <div class="flex justify-start w-full mr-auto gap-[1dvw]  " id="cta-jumbotron">
                 <button
                     class="bg-white text-dark text-[1.2vw] px-6 py-2 font-semibold rounded-sm flex gap-2 items-center hover:bg-white/85">
-                    <div class="size-5 fill-dark">
+                    <div class="size-[1.2vw] fill-dark">
                         <svg viewBox="0 0 7.00 7.00" version="1.1" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -56,7 +56,7 @@
                 </button>
                 <button
                     class="bg-white/40 text-white/95 px-[3.2vw] py-2 font-semibold text-[1.2vw] rounded-sm flex gap-2 items-center hover:bg-white/30">
-                    <div class="size-6 fill-white/95">
+                    <div class="size-[2vw] fill-white/95">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
