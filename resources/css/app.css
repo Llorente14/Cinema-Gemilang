@@ -116,3 +116,69 @@
 .transition-hamburger {
     transition: all ease-out 1s;
 }
+
+/* Carousell */
+
+/* Card Carousell */
+
+.card-vignette {
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(255, 255, 255, 0.658) 50.42%,
+        rgb(255, 255, 255)
+    );
+}
+@layer utilities {
+    .hover\:card-hover:hover {
+        background-color: red;
+
+        inset: 0;
+        position: absolute !important;
+        z-index: 9999 !important;
+        animation:
+            pickUp 0.5s forwards,
+            pickUpScale 0.1s forwards;
+    }
+}
+
+@layer utilities {
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+}
+
+/* Animation Card Hover */
+@theme {
+    --animate-pickUp: pickUp 0.2s ease-out forwards, pickUpScale 0.1s forwards;
+    --animate-notPick:
+        notPick 0.2s ease-out forwards, notPickScale 0.1s ease-out forwards;
+    @keyframes pickUp {
+        to {
+            top: -14%;
+        }
+    }
+    @keyframes pickUpScale {
+        to {
+            transform: scale(110%);
+        }
+    }
+    @keyframes notPick {
+        0% {
+            top: -14%;
+            transform: scale(110%);
+        }
+        100% {
+            top: 0;
+        }
+    }
+    @keyframes notPickScale {
+        to {
+            transform: scale(100%);
+        }
+    }
+}

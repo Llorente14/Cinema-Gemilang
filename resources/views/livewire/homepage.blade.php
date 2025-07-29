@@ -7,6 +7,11 @@
 
 
     <livewire:Jumbotron></livewire:Jumbotron>
-    <section class="bg-dark w-full h-dvh"></section>
+    <section class="bg-dark w-full h-dvh">
+        {{-- Infinite Scroll Film --}}
+        <livewire:swiper-card></livewire:swiper-card>
+
+
+    </section>
 
 </div>

@@ -1,4 +1,5 @@
-<div class="w-full  dark:bg-base-100 px-[clamp(1rem,4vw,6rem)]">
+<div class="w-full  dark:bg-base-100 ">
 
     <livewire:NavBar></livewire:NavBar>
+
 </div>

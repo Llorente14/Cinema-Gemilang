@@ -1,5 +1,5 @@
 <div
-    class=" fixed flex  flex-wrap  lg:gap-[20px] h-16 dark:bg-neutral left-0 top-0  nav-vignette w-dvw  px-[clamp(1rem,4vw,6rem)] z-[1]">
+    class=" fixed flex  flex-wrap  lg:gap-[20px] h-16 dark:bg-neutral left-0 top-0  nav-vignette w-dvw  px-[clamp(1rem,4vw,6rem)] z-20">
     <div class="flex items-center justify-center grow  shrink max-w-[120px] ">
         <div class="aspect-square size-[4.75vw]">
             <a href="/" wire:navigate>
