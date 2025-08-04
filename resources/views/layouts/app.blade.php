@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="box-border p-0 m-0" x-data="{ isDarkMode: $persist(true).as('darkMode') }"
-    x-bind:data-theme="isDarkMode ? 'night' : 'corporate'">
+    x-bind:data-theme="isDarkMode ? 'night' : 'winter'">
 
 <head>
     <meta charset="UTF-8">
