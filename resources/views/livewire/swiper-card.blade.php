@@ -2,7 +2,7 @@
      <div class="relative flex flex-col justify-center items-center w-[77vw] px-10 grow swiper-card">
          <livewire:scroll-button direction="left" target="{{ $category }}" />
          <div class="flex justify-between items-center w-full px-[4.5vw] momo ">
-             <p class="text-white/95 text-[1.4vw] font-[600] tracking-wide">{{ $category }}</p>
+             <p class="text-light/95 text-[1.4vw] font-[600] tracking-wide">{{ $category }}</p>
              <livewire:components.secondary-button style="cta" icon="arrow-r" positionIcon="right" text="Lihat Semua"
                  size="md">
          </div>

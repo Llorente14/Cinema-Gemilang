@@ -1,8 +1,8 @@
-<div class="group/card-carousell relative  h-[22.5vw]  w-[15vw] snap-start shrink-0 cursor-pointer "
+<div class="group/card-carousell relative  h-[22.5vw]  w-[15vw] snap-start shrink-0 cursor-pointer  "
     id="wrapper-card-carousell">
     <div class="pt-[150%] " id="padding-card-carousell"></div>
     <div
-        class="group/content absolute w-full h-[22.5vw] top-0 left-0  bg-transparent backdrop-blur-[1vw] hover:card-hover  not-hover:animate-notPick">
+        class="group/content absolute w-full h-[22.5vw] top-0 left-0  bg-transparent hover:card-hover rounded-b-md rounded-t-xs overflow-hidden not-hover:animate-notPick">
         <div class="relative" id="wrapper-info">
             <div class="relative pt-[150%] w-full ">
 
@@ -25,9 +25,9 @@
                     {{-- Button --}}
                     <div class="relative flex max-w-full flex-col items-center justify-center gap-[0.5vw]">
                         <livewire:card-button href="https://youtu.be/hnfF9tgN8OI?si=IlVYG_5Ipds1N2SA"
-                            text="Putar Trailer" icon="play" bg="bg-white/40 text-dark" hover="hover:bg-white/30" />
-                        <livewire:card-button href="/movies" text="Beli Tiket" icon="ticket" bg="bg-dark text-white/90"
-                            hover="hover:bg-dark/90" />
+                            text="Putar Trailer" icon="play" bg="bg-transparent text-light"
+                            hover="hover:bg-gray-500/20" />
+                        <livewire:card-button href="/movies" text="Beli Tiket" icon="ticket" />
                     </div>
                     {{-- Info Age and Duration --}}
                     <livewire:info-movie class="text-[0.75vw]" age="{{ $age }}"
@@ -39,11 +39,11 @@
         <a href="/movies/1" class="w-full h-full absolute top-0 left-0 z-[1]"></a>
         {{-- Bottom Card --}}
         <div
-            class=" opacity-100 flex flex-col max-h-max text-center mt-[0.5vw] mx-[1vw] gap-[0.5vw] group-hover/content:animate-showUp group-[&:not(:hover)]/content:animate-showDown  ">
-            <h4 class="text-dark text-[1.2vw] line-clamp-1 tracking-wide font-semibold">{{ $title }}
+            class=" opacity-0 flex flex-col max-h-max text-center mt-[0.5vw] mx-[1vw] gap-[0.5vw] group-hover/content:animate-showUp group-[&:not(:hover)]/content:animate-showDown  ">
+            <h4 class="text-light text-[1.2vw] line-clamp-1 tracking-wide font-semibold">{{ $title }}
             </h4>
             <div class="flex justify-center">
-                <p class="text-dark/90 text-[0.6vw] pb-[1vw]">CINEMA GEMILANG</p>
+                <p class="text-light/90 text-[0.6vw] pb-[1vw] tracking-wider">CINEMA GEMILANG</p>
             </div>
         </div>
     </div>

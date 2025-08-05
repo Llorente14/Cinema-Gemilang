@@ -3,10 +3,10 @@
 
     $baseClass = $isDark
         ? 'bg-white/40 text-white/95 hover:bg-white/30 text-[1.2vw] px-[3.2vw] py-2'
-        : 'bg-white text-dark hover:bg-white/85 text-[1.2vw] px-[1.7vw] py-2';
+        : 'bg-white text-[#141414] hover:bg-white/85 text-[1.2vw] px-[1.7vw] py-2';
 
     $iconSize = $icon === 'info' ? 'size-[2vw]' : 'size-[1.2vw]';
-    $fill = $isDark ? 'fill-white/95' : 'fill-dark';
+    $fill = $isDark ? 'fill-white/95' : 'fill-[#141414]';
 @endphp
 
 <button class="{{ $baseClass }} font-semibold rounded-sm flex gap-2 items-center">

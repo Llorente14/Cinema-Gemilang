@@ -11,7 +11,9 @@
     default: true;
     prefersdark: false;
     color-scheme: "light";
-    --color-dark: #141414;
+    --color-light: #141414;
+    --color-dark: #fff;
+    --color-infoMovie: #ff0000;
     --color-base-100: oklch(100% 0 0);
     --color-base-200: oklch(97.466% 0.011 259.822);
     --color-base-300: oklch(93.268% 0.016 262.751);
@@ -47,7 +49,9 @@
     default: false;
     prefersdark: false;
     color-scheme: "dark";
+    --color-light: #fff;
     --color-dark: #141414;
+    --color-infoMovie: #ff0000;
     --color-base-100: oklch(20.768% 0.039 265.754);
     --color-base-200: oklch(19.314% 0.037 265.754);
     --color-base-300: oklch(17.86% 0.034 265.754);
@@ -79,8 +83,27 @@
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
-@theme {
+
+[data-theme="winter"] {
+    --color-light: #141414;
+    --color-light-rgb: 227, 233, 244;
+    --color-infoMovie: oklch(27.949% 0.036 260.03);
+    --color-dark: #fff;
+    --color-dark-rgb: 255, 255, 255;
+}
+
+[data-theme="night"] {
+    --color-infoMovie: rgba(255, 255, 255, 0.9);
+    --color-light: #fff;
     --color-dark: #141414;
+    --color-light-rgb: 26, 26, 26;
+    --color-dark-rgb: 20, 20, 20;
+}
+
+@theme {
+    --color-light: #fff;
+    --color-dark: #141414;
+    --color-infoMovie: oklch(27.949% 0.036 260.03);
     --color-avocado-100: oklch(0.99 0 0);
     --font-satoshi: Satoshi, "sans-serif";
     --font-poppins: Poppins, sans-serif;
@@ -145,7 +168,7 @@
 } */
 
 .hero-vignette {
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
         180deg,
         hsla(0, 0%, 8%, 0) 0,
         hsla(0, 0%, 8%, 0.15) 15%,
@@ -153,6 +176,15 @@
         hsla(0, 0%, 8%, 0.58) 44%,
         #141414 68%,
         #141414
+    ); */
+    background-image: linear-gradient(
+        180deg,
+        rgba(var(--color-dark-rgb), 0) 0%,
+        rgba(var(--color-dark-rgb), 0.15) 15%,
+        rgba(var(--color-dark-rgb), 0.35) 29%,
+        rgba(var(--color-dark-rgb), 0.58) 44%,
+        var(--color-dark) 68%,
+        var(--color-dark)
     );
 }
 .left-vignette {
@@ -209,11 +241,17 @@
 /* Card Carousell */
 
 .card-vignette {
-    background: linear-gradient(
+    /* background: linear-gradient(
         180deg,
         transparent,
         rgba(255, 255, 255, 0.658) 50.42%,
         rgb(255, 255, 255)
+    ); */
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(var(--color-dark-rgb), 0.658) 50.42%,
+        var(--color-dark)
     );
 }
 @layer utilities {
@@ -251,11 +289,8 @@
     @keyframes pickUp {
         to {
             top: -14%;
-            background-color: color-mix(
-                in oklab,
-                var(--color-white) /* #fff = #ffffff */ 80%,
-                transparent
-            );
+            background-color: rgba(var(--color-light-rgb), 0.3);
+            backdrop-filter: blur(20px);
         }
     }
     @keyframes pickUpScale {
@@ -267,20 +302,14 @@
         0% {
             top: -14%;
             transform: scale(110%);
-            background-color: color-mix(
-                in oklab,
-                var(--color-white) /* #fff = #ffffff */ 80%,
-                transparent
-            );
+            background-color: rgba(var(--color-light-rgb), 0.3);
+            backdrop-filter: blur(20px);
         }
         100% {
             top: 0;
 
-            background-color: color-mix(
-                in oklab,
-                var(--color-white) /* #fff = #ffffff */ 0%,
-                transparent
-            );
+            background-color: rgba(var(--color-light-rgb), 0.5);
+            backdrop-filter: blur(20px);
         }
     }
     @keyframes notPickScale {
