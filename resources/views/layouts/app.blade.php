@@ -8,12 +8,12 @@
     <script src="//unpkg.com/@alpinejs/persist/dist/cdn.min.js" defer></script>
     <script src="//unpkg.com/alpinejs" defer></script>
     <title>{{ $title ?? 'Cinema Gemilang' }}</title>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 
-<body class="flex @container mx-auto font-poppins" x-cloak>
-    <div class="bg-white h-dvh dark:bg-slate-800"></div>
+<body class="custom-scroll flex @container mx-auto font-poppins " x-cloak>
+    <div class=" h-dvh "></div>
 
     {{ $slot }}
 

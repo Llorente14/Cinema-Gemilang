@@ -1,11 +1,12 @@
-<div class="w-full aspect-video relative overflow-hidden">
+<div class="w-full aspect-video relative overflow-hidden transition-colors duration-300 ease-in-out">
 
     <div class="">
 
         <img src="images/Jumbotron.jpg" alt="" class="absolute inset-0 w-full h-full aspect-video ">
         <div class="absolute inset-0 right-[25dvw] left-vignette opacity-90 transition-opacity duration-500">
         </div>
-        <div class="absolute -bottom-[0.25dvw] z-10 w-full h-[30dvh] hero-vignette bg-top bg-[length:100%_100%]">
+        <div
+            class="absolute -bottom-[0.25dvw] z-10 w-full h-[30dvh] hero-vignette fade-out bg-top bg-[length:100%_100%] transition-colors duration-300 ease-in-out">
         </div>
     </div>
     <div class="absolute inset-0 w-full h-full">

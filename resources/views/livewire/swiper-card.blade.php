@@ -1,7 +1,8 @@
  <section class="w-full flex justify-center relative px-[clamp(1rem,4vw,6rem)]  ">
-     <div class="relative flex flex-col justify-center items-center w-[77vw] px-10 grow swiper-card">
+     <div
+         class="relative flex flex-col justify-center items-center w-[77vw] px-10 grow swiper-card transition-colors duration-500 ease-in-out">
          <livewire:scroll-button direction="left" target="{{ $category }}" />
-         <div class="flex justify-between items-center w-full px-[4.5vw] momo ">
+         <div class="flex justify-between items-center w-full px-[4.5vw] head-swiper ">
              <p class="text-light/95 text-[1.4vw] font-[600] tracking-wide">{{ $category }}</p>
              <livewire:components.secondary-button style="cta" icon="arrow-r" positionIcon="right" text="Lihat Semua"
                  size="md">

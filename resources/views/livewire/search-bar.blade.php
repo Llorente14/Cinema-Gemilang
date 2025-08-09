@@ -1,4 +1,4 @@
-<div class="relative flex items-center justify-end" x-data="{ isOpen: false }" @click.away="isOpen = false">
+<div class="relative flex items-center justify-end " x-data="{ isOpen: false }" @click.away="isOpen = false" id="search-bar">
 
     <button @click="isOpen = !isOpen; if (isOpen) { $nextTick(() => $refs.searchInput.focus()) }"
         class="absolute right-[0.6vw] z-10 transition-transform duration-300 ease-in-out"

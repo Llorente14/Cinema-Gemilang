@@ -12,7 +12,7 @@
             });
         }
     "
-    class="absolute top-[50%] {{ $isLeft ? 'left-0' : 'right-0' }} opacity-0 z-10 flex items-center justify-center text-center p-2 btn-pagination bg-light fill-dark rounded-full">
+    class="absolute top-[50%] {{ $isLeft ? 'left-0' : 'right-0' }} opacity-0 z-10 flex items-center justify-center text-center p-2 btn-pagination bg-light fill-dark rounded-full cursor-pointer">
     <svg class="size-[1.2vw]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1.2">
         <path
             d="{{ $isLeft

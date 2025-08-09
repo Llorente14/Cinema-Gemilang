@@ -34,7 +34,7 @@ class SecondaryButton extends Component
 
                 break;
             case 'cta':
-                $this->styleBtn = 'bg-primary/30 text-white/90 border border-primary';
+                $this->styleBtn = 'bg-primary/40 text-white/90 border border-primary';
                 break;
             case 'none':
 

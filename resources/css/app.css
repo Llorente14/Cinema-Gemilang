@@ -1,183 +1,230 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+/* Tailwind Sources */
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
-@plugin "daisyui";
+/* DaisyUI Plugin - Remove Scrollbar */
+@plugin "daisyui" {
+    exclude: scrollbar;
+}
 
+/* DaisyUI Theme - Winter */
 @plugin "daisyui/theme" {
     name: "winter";
     default: true;
     prefersdark: false;
     color-scheme: "light";
+
     --color-light: #141414;
     --color-dark: #fff;
     --color-infoMovie: #ff0000;
+
     --color-base-100: oklch(100% 0 0);
     --color-base-200: oklch(97.466% 0.011 259.822);
     --color-base-300: oklch(93.268% 0.016 262.751);
     --color-base-content: oklch(41.886% 0.053 255.824);
+
     --color-primary: oklch(56.86% 0.255 257.57);
     --color-primary-content: oklch(91.372% 0.051 257.57);
+
     --color-secondary: oklch(42.551% 0.161 282.339);
     --color-secondary-content: oklch(88.51% 0.032 282.339);
+
     --color-accent: oklch(59.939% 0.191 335.171);
     --color-accent-content: oklch(11.988% 0.038 335.171);
+
     --color-neutral: oklch(19.616% 0.063 257.651);
     --color-neutral-content: oklch(83.923% 0.012 257.651);
+
     --color-info: oklch(88.127% 0.085 214.515);
     --color-info-content: oklch(17.625% 0.017 214.515);
+
     --color-success: oklch(80.494% 0.077 197.823);
     --color-success-content: oklch(16.098% 0.015 197.823);
+
     --color-warning: oklch(89.172% 0.045 71.47);
     --color-warning-content: oklch(17.834% 0.009 71.47);
+
     --color-error: oklch(73.092% 0.11 20.076);
     --color-error-content: oklch(14.618% 0.022 20.076);
+
     --radius-selector: 1rem;
     --radius-field: 0.5rem;
     --radius-box: 1rem;
+
     --size-selector: 0.25rem;
     --size-field: 0.25rem;
+
     --border: 1px;
     --depth: 0;
     --noise: 0;
+
+    exclude: rootscrollgutter, rootcolor;
 }
 
+/* DaisyUI Theme - Night */
 @plugin "daisyui/theme" {
     name: "night";
     default: false;
     prefersdark: false;
     color-scheme: "dark";
+
     --color-light: #fff;
     --color-dark: #141414;
     --color-infoMovie: #ff0000;
+
     --color-base-100: oklch(20.768% 0.039 265.754);
     --color-base-200: oklch(19.314% 0.037 265.754);
     --color-base-300: oklch(17.86% 0.034 265.754);
     --color-base-content: oklch(84.153% 0.007 265.754);
+
     --color-primary: oklch(75.351% 0.138 232.661);
     --color-primary-content: oklch(15.07% 0.027 232.661);
+
     --color-secondary: oklch(68.011% 0.158 276.934);
     --color-secondary-content: oklch(13.602% 0.031 276.934);
+
     --color-accent: oklch(72.36% 0.176 350.048);
     --color-accent-content: oklch(14.472% 0.035 350.048);
+
     --color-neutral: oklch(27.949% 0.036 260.03);
     --color-neutral-content: oklch(85.589% 0.007 260.03);
+
     --color-info: oklch(68.455% 0.148 237.251);
     --color-info-content: oklch(0% 0 0);
+
     --color-success: oklch(78.452% 0.132 181.911);
     --color-success-content: oklch(15.69% 0.026 181.911);
+
     --color-warning: oklch(83.242% 0.139 82.95);
     --color-warning-content: oklch(16.648% 0.027 82.95);
+
     --color-error: oklch(71.785% 0.17 13.118);
     --color-error-content: oklch(14.357% 0.034 13.118);
+
     --radius-selector: 1rem;
     --radius-field: 0.5rem;
     --radius-box: 1rem;
+
     --size-selector: 0.25rem;
     --size-field: 0.25rem;
+
     --border: 1px;
     --depth: 0;
     --noise: 0;
+
+    exclude: rootscrollgutter, rootcolor;
 }
 
+/* Custom Variant - Dark Mode */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Theme Variables - Winter */
 [data-theme="winter"] {
     --color-light: #141414;
+    --color-super-rgb: 20, 20, 20;
     --color-light-rgb: 227, 233, 244;
     --color-infoMovie: oklch(27.949% 0.036 260.03);
     --color-dark: #fff;
     --color-dark-rgb: 255, 255, 255;
+    --color-nav-rgb: 0, 105, 255;
 }
 
+/* Theme Variables - Night */
 [data-theme="night"] {
     --color-infoMovie: rgba(255, 255, 255, 0.9);
+    --color-infoMovie-rgb: 255, 255, 255;
+    --color-super-rgb: 255, 255, 255;
     --color-light: #fff;
     --color-dark: #141414;
     --color-light-rgb: 26, 26, 26;
     --color-dark-rgb: 20, 20, 20;
+    --color-nav-rgb: 58, 189, 247;
 }
 
+/* Theme Defaults */
 @theme {
+    --color-nav-rgb: 255, 255, 255;
     --color-light: #fff;
+    --color-light-rgb: 255, 255, 255;
     --color-dark: #141414;
-    --color-infoMovie: oklch(27.949% 0.036 260.03);
+    --color-infoMovie: #1e293b;
+    --color-infoMovie-rgb: 30, 41, 59;
     --color-avocado-100: oklch(0.99 0 0);
     --font-satoshi: Satoshi, "sans-serif";
     --font-poppins: Poppins, sans-serif;
     --font-montserrat: Montserrat, "sans-serif";
 }
 
-/* @theme {
-    --font-sans:
-        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
-
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
-
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
-}
-
-@layer theme {
-    .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-    }
-}
-
-@layer base {
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
-    }
-} */
-
+/* Cloak Utility */
 [x-cloak] {
     display: none !important;
 }
 
-/* NavBar Vignette */
+/* ===========================
+   Global Styles
+   =========================== */
+
+/* ScrollBar */
+.custom-scroll::-webkit-scrollbar {
+    width: 0.3vw;
+    transition: all 2s ease-in-out;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: rgba(var(--color-dark-rgb), 0.5);
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-infoMovie-rgb), 0.3);
+}
+.custom-scroll::-webkit-scrollbar-button {
+    height: 1.5vh;
+    background: rgba(var(--color-infoMovie-rgb), 0.35);
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--color-infoMovie-rgb), 0.4);
+}
+
+/* Navbar - Scrolled State */
+.nav-vignette.scrolled {
+    background: rgba(var(--color-dark-rgb), 0.75);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.nav-vignette.scrolled #search-bar button svg {
+    color: rgba(var(--color-nav-rgb), 0.95) !important;
+}
+.nav-vignette.scrolled #search-bar input {
+    color: rgba(var(--color-nav-rgb), 1) !important;
+}
+.nav-vignette.scrolled #search-bar input::placeholder {
+    color: rgba(var(--color-nav-rgb), 0.8) !important;
+}
+.nav-vignette.scrolled #dark-toggle svg {
+    fill: rgba(var(--color-super-rgb), 0.9) !important;
+}
+.nav-vignette.scrolled .nav-item:not(.active) a {
+    color: var(--color-light) !important;
+}
+.nav-vignette * {
+    transition: all 0.5s ease;
+}
+
+/* Navbar Default */
 .nav-vignette {
     background-image: linear-gradient(
         180deg,
         rgba(0, 0, 0, 0.7) 10%,
         transparent
     );
+    transition: all 0.5s ease-in-out;
+    backdrop-filter: blur(0px);
 }
-/* .nav-vignette {
-   shadow-[inset_0_145px_30px_-110px_rgba(0,0,0,0.3)]
-} */
 
+/* Hero Section Gradient */
 .hero-vignette {
-    /* background-image: linear-gradient(
-        180deg,
-        hsla(0, 0%, 8%, 0) 0,
-        hsla(0, 0%, 8%, 0.15) 15%,
-        hsla(0, 0%, 8%, 0.35) 29%,
-        hsla(0, 0%, 8%, 0.58) 44%,
-        #141414 68%,
-        #141414
-    ); */
-    background-image: linear-gradient(
+    background: linear-gradient(
         180deg,
         rgba(var(--color-dark-rgb), 0) 0%,
         rgba(var(--color-dark-rgb), 0.15) 15%,
@@ -186,7 +233,14 @@
         var(--color-dark) 68%,
         var(--color-dark)
     );
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
+.hero-vignette.fade-out {
+    opacity: 0.75;
+}
+
+/* Side Vignette */
 .left-vignette {
     background-image: linear-gradient(
         77deg,
@@ -197,10 +251,9 @@
 
 /* Title Container */
 .title-container {
-    /* Gunakan vw untuk width yang responsif */
     width: 36vw;
-    min-width: 280px; /* Minimum width agar tidak terlalu kecil */
-    max-width: 500px; /* Maximum width agar tidak terlalu besar */
+    min-width: 280px;
+    max-width: 500px;
 }
 @media (max-width: 768px) {
     .title-container {
@@ -208,25 +261,22 @@
         max-width: 300px;
     }
 }
-
 @media (max-width: 480px) {
     .title-container {
         width: 60vw;
         max-width: 250px;
     }
 }
+
 /* Hamburger Menu */
 .transition-hamburger {
     transition: all ease-out 1s;
 }
 
-/* Carousell */
-
-/* CTA Button */
+/* Carousel Button Animation */
 @theme {
     --animate-rightEnter: rightEnter 0.9s cubic-bezier(0.87, -1.38, 0.03, 1.54)
         forwards;
-
     @keyframes rightEnter {
         0%,
         100% {
@@ -238,15 +288,8 @@
     }
 }
 
-/* Card Carousell */
-
+/* Card Carousel */
 .card-vignette {
-    /* background: linear-gradient(
-        180deg,
-        transparent,
-        rgba(255, 255, 255, 0.658) 50.42%,
-        rgb(255, 255, 255)
-    ); */
     background: linear-gradient(
         180deg,
         transparent,
@@ -254,19 +297,21 @@
         var(--color-dark)
     );
 }
+
+/* Card Hover Effect */
 @layer utilities {
     .hover\:card-hover:hover {
         inset: 0;
         height: max-content;
         position: absolute !important;
         z-index: 8000 !important;
-
         animation:
             pickUp 0.5s forwards,
             pickUpScale 0.1s forwards;
     }
 }
 
+/* Scrollbar Hide Utility */
 @layer utilities {
     .scrollbar-hide {
         -ms-overflow-style: none;
@@ -277,15 +322,15 @@
     }
 }
 
-/* Animation Card Hover */
+/* Card Animations */
 @theme {
     --animate-pickUp: pickUp 0.2s ease-out forwards, pickUpScale 0.1s forwards;
     --animate-notPick:
         notPick 0.3s ease-out forwards, notPickScale 0.5s ease-out forwards,
         cardContentShow 0.4s ease-in-out forwards;
-
     --animate-showUp: showUp 0.5s cubic-bezier(0.18, 0.89, 0.87, 0.7) forwards;
     --animate-showContent: showContent 0.3s ease-in-out forwards;
+
     @keyframes pickUp {
         to {
             top: -14%;
@@ -307,7 +352,6 @@
         }
         100% {
             top: 0;
-
             background-color: rgba(var(--color-light-rgb), 0.5);
             backdrop-filter: blur(20px);
         }
@@ -325,8 +369,6 @@
             height: 22.5vw;
         }
     }
-
-    /* Bottom Card */
     @keyframes showUp {
         0% {
             opacity: 0;
@@ -348,7 +390,6 @@
         }
         to {
             transform: scale(1);
-
             opacity: 100%;
         }
     }
@@ -356,7 +397,7 @@
 
 /* Button Pagination Swiper */
 .btn-pagination {
-    transition: opacity 0.3s cubic-bezier(0.7, 0, 0.2, 1); /* Easing yang lebih natural */
+    transition: opacity 0.3s cubic-bezier(0.7, 0, 0.2, 1);
 }
 .swiper-card:hover .btn-pagination,
 .swiper-card:has(.card-container:hover) .btn-pagination {
@@ -366,12 +407,53 @@
     opacity: 0;
 }
 
+/* Fade Animation */
 @theme {
     --animate-fading: fading 0.5s forwards;
-
     @keyframes fading {
         to {
             opacity: 1;
         }
     }
 }
+
+/* ===========================
+   // Trash Code
+   ===========================
+   Kode yang dikomentari, tidak dipakai di versi final,
+   tapi disimpan untuk referensi desain sebelumnya.
+*/
+
+/*
+.nav-vignette {
+   shadow-[inset_0_145px_30px_-110px_rgba(0,0,0,0.3)]
+}
+
+.hero-vignette {
+    background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 8%, 0) 0,
+        hsla(0, 0%, 8%, 0.15) 15%,
+        hsla(0, 0%, 8%, 0.35) 29%,
+        hsla(0, 0%, 8%, 0.58) 44%,
+        #141414 68%,
+        #141414
+    );
+}
+
+.card-vignette {
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(255, 255, 255, 0.658) 50.42%,
+        rgb(255, 255, 255)
+    );
+}
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+*/
