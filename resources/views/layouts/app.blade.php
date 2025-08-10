@@ -5,8 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="//unpkg.com/@alpinejs/persist/dist/cdn.min.js" defer></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
     <title>{{ $title ?? 'Cinema Gemilang' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
