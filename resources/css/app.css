@@ -417,6 +417,30 @@
     }
 }
 
+/* List Movie */
+.btn-sort-dark {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border: none;
+}
+
+.btn-sort-light {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    border: none;
+    pointer-events: none;
+    cursor: default;
+}
+
+.btn-sort-light:hover {
+    opacity: 0.9;
+}
+/* Parent Element (Li) from button */
+li:has(.btn-sort-light) {
+    cursor: default;
+    pointer-events: none;
+}
+
 /* ===========================
    // Trash Code
    ===========================

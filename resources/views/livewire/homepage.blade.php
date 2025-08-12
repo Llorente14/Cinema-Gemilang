@@ -2,7 +2,7 @@
 
 
 
-    <livewire:NavBar></livewire:NavBar>
+
 
 
 

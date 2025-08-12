@@ -34,6 +34,31 @@ window.addEventListener("scroll", () => {
     }
 });
 
+//List Movie
+// Sort Button
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.getElementById("btn-placeholder");
+    if (!container) {
+        return;
+    }
+
+    container.addEventListener("click", (e) => {
+        const btn = e.target.closest("a");
+        if (!btn) return;
+        e.preventDefault();
+
+        // Reset semua tombol ke light
+        container.querySelectorAll("a").forEach((el) => {
+            el.classList.remove("btn-sort-light");
+            el.classList.add("btn-sort-dark");
+        });
+
+        // Aktifkan tombol yang diklik
+        btn.classList.remove("btn-sort-dark");
+        btn.classList.add("btn-sort-light");
+    });
+});
+
 function toggleVignette() {
     const vignette = document.querySelector(".hero-vignette");
     if (vignette) {

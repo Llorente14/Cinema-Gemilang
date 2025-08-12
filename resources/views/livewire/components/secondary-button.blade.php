@@ -1,5 +1,5 @@
 <a href="{{ $href }}" target="{{ $newTabTarget }}"rel="noreferrer"
-    class="{{ $styleBtn }}  {{ $hoverBtn }} {{ $sizeBtn }} {{ $positionIcon }} group/secBtn flex font-semibold rounded-full gap-2 items-center justify-center tracking-wider  whitespace-nowrap transition-colors duration-500 ease-in-out ">
+    class="{{ $styleBtn }}  {{ $hoverBtn }} {{ $sizeBtn }} {{ $positionIcon }} group/secBtn flex font-semibold rounded-full gap-2 items-center justify-center whitespace-nowrap transition-colors duration-500 ease-in-out ">
 
     @if ($icon != 'none')
         <div class="w-full fill-current group-hover/secBtn:animate-rightEnter">

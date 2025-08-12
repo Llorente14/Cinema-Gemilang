@@ -1,5 +1,5 @@
 <div
-    class=" fixed flex  flex-wrap  lg:gap-[20px] h-16 left-0 top-0  nav-vignette w-dvw  px-[clamp(1rem,4vw,6rem)] z-[9999] transition-all duration-300 ease-out">
+    class=" fixed flex  flex-wrap  lg:gap-[20px] h-20 left-0 top-0  nav-vignette w-dvw  px-[clamp(1rem,4vw,6rem)] z-[9999] transition-all duration-300 ease-out">
     <div class="flex items-center justify-center grow  shrink max-w-[120px] ">
         <div class="aspect-square size-[4.75vw]">
             <a href="/" wire:navigate>
@@ -11,9 +11,9 @@
     </div>
     {{-- Dekstop --}}
     <div class=" items-center grow-[5] gap-8 hidden lg:flex ">
-        <livewire:components.nav-link href="/" label="Beranda" />
-        <livewire:components.nav-link href="/movies" label="Daftar Film" />
-        <livewire:components.nav-link href="/myorder" label="Pesanan Saya" />
+        <livewire:components.nav-link href="/" label="Beranda" wire:navigate />
+        <livewire:components.nav-link href="/movies" label="Daftar Film" wire:navigate />
+        <livewire:components.nav-link href="/myorder" label="Pesanan Saya" wire:navigate />
 
     </div>
     {{-- Tablet/Mobile --}}

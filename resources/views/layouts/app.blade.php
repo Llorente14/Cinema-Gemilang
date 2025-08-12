@@ -11,11 +11,15 @@
 </head>
 
 <body class="custom-scroll flex @container mx-auto font-poppins " x-cloak>
-    <div class=" h-dvh "></div>
+    <livewire:NavBar></livewire:NavBar>
+    <div class=" h-dvh  "></div>
 
     {{ $slot }}
 
+
     @livewireScripts
+
+
 </body>
 
 </html>

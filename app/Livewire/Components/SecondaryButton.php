@@ -6,7 +6,8 @@ use Livewire\Component;
 
 class SecondaryButton extends Component
 {
-    public string $href = '/movies';
+
+    public string $href = '#';
     public bool $openInNewTab = false; // 'true', 'false'
     public string $text = 'Tombol';
     public string $icon = 'play'; // 'play', 'question', 'arrow-r', 'arrow-l', none
@@ -23,8 +24,12 @@ class SecondaryButton extends Component
     public string $sizeBtn;  // Gabungan padding + text size
     public string $sizeIcon;  // Gabungan padding + text size
 
-
     public function mount()
+    {
+        $this->applyStyle();
+    }
+
+    public function applyStyle()
     {
         $this->hover = $this->style;
         // Handle style
@@ -36,7 +41,16 @@ class SecondaryButton extends Component
             case 'cta':
                 $this->styleBtn = 'bg-primary/40 text-white/90 border border-primary';
                 break;
+            case 'none-dark':
+                $this->styleBtn = 'btn-sort-dark ';
+
+                break;
+            case 'none-light':
+                $this->styleBtn = 'btn-sort-light';
+
+                break;
             case 'none':
+                $this->styleBtn = 'bg-light text-dark border border-none  ';
 
                 break;
             case 'light':
@@ -56,6 +70,12 @@ class SecondaryButton extends Component
             case 'none':
                 $this->hoverBtn = '';
                 break;
+            case 'none-light':
+                $this->hoverBtn = 'hover:opacity-90';
+                break;
+            case 'none-dark':
+                $this->hoverBtn = 'hover:bg-dark/90';
+                break;
             case 'light':
             default:
                 $this->hoverBtn = 'hover:bg-white/30';
@@ -65,15 +85,15 @@ class SecondaryButton extends Component
         // Handle size
         switch ($this->size) {
             case 'sm':
-                $this->sizeBtn = 'text-[0.8vw] px-[1vw] py-[0.4vw]';
+                $this->sizeBtn = 'text-[0.9vw] px-[1.1vw] py-[0.6vw] tracking-normal';
                 $this->sizeIcon = 'size-[0.8vw]';
                 break;
             case 'lg':
-                $this->sizeBtn = 'text-[1.1vw]  px-[2.5vw] py-[1.75vw]';
+                $this->sizeBtn = 'text-[1.1vw]  px-[2.5vw] py-[1.75vw] tracking-wider';
                 break;
             case 'md':
             default:
-                $this->sizeBtn = 'text-[1vw] px-[1.2vw] py-[0.6vw]';
+                $this->sizeBtn = 'text-[1vw] px-[1.2vw] py-[0.6vw] tracking-wide';
                 $this->sizeIcon = 'size-[1vw]';
                 break;
         }
@@ -92,6 +112,9 @@ class SecondaryButton extends Component
         //Handle Open New Tab
         $this->newTabTarget = $this->openInNewTab ? '_blank' : '_self';
     }
+
+
+
 
     public function render()
     {
