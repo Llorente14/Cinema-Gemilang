@@ -23,15 +23,15 @@
                             7 Agustus</p>
                     @endif
                     {{-- Button --}}
-                    <div class="relative flex max-w-full flex-col items-center justify-center gap-[0.5vw]">
+                    <div class="relative flex max-w-full flex-col items-center justify-center gap-[0.5vw] mb-[1.2vw]">
                         <livewire:card-button href="https://youtu.be/hnfF9tgN8OI?si=IlVYG_5Ipds1N2SA"
                             text="Putar Trailer" icon="play" bg="bg-transparent text-light"
                             hover="hover:bg-gray-500/20" />
                         <livewire:card-button href="/movies" text="Beli Tiket" icon="ticket" />
                     </div>
                     {{-- Info Age and Duration --}}
-                    <livewire:info-movie class="text-[0.75vw]" age="{{ $age }}"
-                        duration="{{ $duration }}"></livewire:info-movie>
+                    <livewire:info-movie class="text-[0.75vw]" age="{{ $age }}" duration="{{ $duration }}"
+                        size='sm' position='center'></livewire:info-movie>
                 </div>
             </div>
         </div>

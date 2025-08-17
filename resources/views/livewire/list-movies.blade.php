@@ -25,6 +25,21 @@
                     </li>
                 </ul>
             </div>
+            {{-- Gallery with grid view --}}
+
+            <div
+                class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-[2.1vw] pt-[0.5vw] justify-items-center max-w-full">
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+                <livewire:components.gallery-card />
+
+
+            </div>
+            {{-- Gallery with list view --}}
         </div>
     </div>
 </div>

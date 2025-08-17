@@ -12,6 +12,7 @@ class CardButton extends Component
     public string $bg = 'bg-light text-dark';
     public string $hover = 'hover:opacity-90';
     public string $border = 'border-light/80';
+    public string $size = 'text-[0.8vw] w-[10vw] px-[55%] py-[7%]';
 
     public function render()
     {

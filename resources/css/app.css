@@ -441,6 +441,21 @@ li:has(.btn-sort-light) {
     pointer-events: none;
 }
 
+/* Gallery Card */
+.bg-gallery-card {
+    background: rgba(var(--color-infoMovie-rgb), 0.01);
+    backdrop-filter: blur(20px);
+}
+.gallery-filter {
+    background: rgba(var(--color-dark-rgb), 0.8);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.gallery-filter:hover {
+    opacity: 1;
+}
+
 /* ===========================
    // Trash Code
    ===========================
